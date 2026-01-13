@@ -58,7 +58,7 @@ plugins:
 author:
   name   : "Akash Bhavsar"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Application Security Consultant | OSCP+ | Penetration Tester"
+  bio    : "Application Security Consultant | Penetration Tester"
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
