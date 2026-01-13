@@ -29,7 +29,7 @@ latest_posts:
 
 I'm an **OSCP+ certified Application Security Engineer** with **8+ years of experience** spanning full-stack development, penetration testing, and DevSecOps. Currently at **Sydney Tools**, I identify and exploit security vulnerabilities in business-critical applications while leading secure development practices across the engineering team.
 
-My journey from **Senior Full Stack Developer to Security Engineer** gives me a unique perspective—I understand how developers think, which makes me effective at both finding vulnerabilities and providing practical remediation guidance.
+My journey from **Senior Full Stack Developer to Security Engineer** gives me a unique perspective. I understand how developers think, which makes me effective at both finding vulnerabilities and providing practical remediation guidance.
 
 ## 🎯 What I Do
 
@@ -42,11 +42,11 @@ My journey from **Senior Full Stack Developer to Security Engineer** gives me a 
 **Security Engineering**
 - Led secure code review initiatives as the final security gatekeeper, preventing SQLi, XSS, and IDOR vulnerabilities from reaching production (Semgrep, CodeQL, Bandit, ESLint Security, Brakeman, SpotBugs, Checkmarx)
 - Architected DevSecOps pipelines integrating SAST/DAST tools (Snyk, SonarQube, OWASP ZAP, Trivy, Checkov, Gitleaks, TruffleHog) into GitHub Actions workflows
-- Hardened cloud environments across AWS & GCP—secured IAM policies, container runtimes, and Kubernetes RBAC (ScoutSuite, Prowler, Falco, kube-bench)
+- Hardened cloud environments across AWS & GCP, secured IAM policies, container runtimes, and Kubernetes RBAC (ScoutSuite, Prowler, Falco, kube-bench)
 - Designed security architectures for microservices, implementing OAuth2/OIDC flows and secrets management with HashiCorp Vault
 
 **Development Background** *(What makes me effective at AppSec)*
-- 5+ years building production systems in Python, Node.js, React, Vue.js, and Next.js—I know where developers cut corners
+- 5+ years building production systems in Python, Node.js, React, Vue.js, and Next.js. I know where developers cut corners
 - Orchestrated cloud-native infrastructure with Docker, Kubernetes, Terraform, Ansible, and CI/CD (Jenkins, Buildkite, GitHub Actions)
 - Designed high-availability database schemas (PostgreSQL, MongoDB) and secure API patterns (REST, GraphQL) with monitoring (Prometheus, Grafana, Splunk)
 
@@ -58,16 +58,16 @@ My journey from **Senior Full Stack Developer to Security Engineer** gives me a 
   </a>
 </div>
 
-- **OSCP+ Certified** — [Verify Credential](https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74) (Issued Dec 2025, Expires Dec 2028)
-- **Hack The Box** — [View Profile](https://app.hackthebox.com/profile/2430357) | Active practitioner (Era, Mirage, Outbound, Faraday, Voleur, Sorcery)
-- **Security Leader** — Mentor developers, conduct security training, lead incident response
-- **Full-Stack to Security** — Unique perspective bridging development and security
+- **OSCP+ Certified** [Verify Credential](https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74) (Issued Dec 2025, Expires Dec 2028)
+- **Hack The Box** [View Profile](https://app.hackthebox.com/profile/2430357) | Active practitioner (Era, Mirage, Outbound, Faraday, Voleur, Sorcery)
+- **Security Leader**: Mentor developers, conduct security training, lead incident response
+- **Full-Stack to Security**: Unique perspective bridging development and security
 
 ## 💡 My Approach
 
-I don't just find vulnerabilities—I **understand the developer mindset** and provide **actionable remediation guidance**. Having built production systems myself, I know what's realistic to fix and how to prioritize security work alongside feature development.
+I don't just find vulnerabilities. I **understand the developer mindset** and provide **actionable remediation guidance**. Having built production systems myself, I know what's realistic to fix and how to prioritize security work alongside feature development.
 
-> *"Security isn't about saying no—it's about finding ways to say yes, securely."*
+> *"Security isn't about saying no. It's about finding ways to say yes, securely."*
 
 ## 🛠️ Toolkit
 
