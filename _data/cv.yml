@@ -1,0 +1,115 @@
+- title: General Information
+  type: map
+  contents:
+    - name: Full Name
+      value: Akash Bhavsar
+    - name: Role
+      value: Application Security Engineer | DevSecOps Engineer
+    - name: Location
+      value: Melbourne, Victoria, Australia
+    - name: Certifications
+      value: OSCP, OSCP+
+    - name: Experience
+      value: 8+ Years
+
+- title: Experience
+  type: time_table
+  contents:
+    - title: Senior Full Stack Developer & Application Security Engineer
+      institution: Sydney Tools
+      year: 2023 - Present
+      description:
+        - Identify, exploit, and document security vulnerabilities in business-critical web applications and APIs using Burp Suite and Metasploit
+        - Spearhead secure code review process, conducting rigorous PR reviews to enforce secure coding standards and prevent SQLi, XSS vulnerabilities
+        - Orchestrate secure CI/CD pipelines using GitHub Actions with automated SAST/DAST security testing
+        - Fortify cloud infrastructure (AWS, GCP) and harden Docker containers and Kubernetes clusters
+        - Manage and mentor team of developers, conduct technical interviews, and deliver security training programs
+        - Architect secure network layers with Nginx reverse proxy and SSL/TLS certificate management
+        - Primary point of contact for security incidents, executing rapid triage and escalation procedures
+
+    - title: Offensive Security Practitioner
+      institution: Hack The Box
+      year: 2023 - Present
+      description:
+        - Advanced penetration testing on multiple machines (Era, Mirage, Outbound, Faraday, Voleur, Sorcery)
+        - Windows & Linux exploitation, web application vulnerabilities, and Active Directory attacks
+        - Web exploitation techniques including SQLi, SSTI, credential harvesting, and CVE exploitation
+        - Active Directory enumeration and privilege escalation using BloodHound, Kerberoasting
+        - Post-exploitation techniques - DPAPI decryption, NTDS.dit extraction, persistence creation
+        - Secure source code reviews identifying logic flaws and OWASP Top 10 vulnerabilities
+
+    - title: Senior Full Stack Engineer
+      institution: Josephmark
+      year: 2023 - 2025
+      description:
+        - Led strategic migration of legacy systems to modern Strapi and Next.js architecture with "Security by Design"
+        - Developed bespoke Strapi plugins and custom backend modules with secure data handling
+        - Implemented granular Role-Based Access Control (RBAC) and Principle of Least Privilege
+        - Integrated complex backend services with Next.js frontends ensuring secure data rendering
+
+    - title: Software Development Analyst / Full Stack Developer
+      institution: WilldooIT Pty Ltd
+      year: 2018 - 2023
+      description:
+        - End-to-end development of SaaS and B2B ERP systems using Python, Node.js, React.js, Vue.js
+        - Engineered CI/CD pipelines using Ansible, Buildkite, Jenkins, GitHub Actions with Docker/Kubernetes
+        - Orchestrated cloud-native infrastructure on AWS and GCP with infrastructure-as-code
+        - Architected secure authentication flows using OAuth2, OIDC, HashiCorp Vault, and Snyk integration
+        - Implemented monitoring stacks with Prometheus, Grafana, Splunk, and AWS CloudWatch
+
+    - title: Application Engineer
+      institution: Odoo
+      year: 2016 - 2018
+      description:
+        - Integrated ERP solutions and IoT devices for enterprise resource planning
+        - Designed complex reports and customized business processes
+        - Worked on database integrity, workflow automation, and internationalization
+
+- title: Technical Skills
+  type: nested_list
+  contents:
+    - title: Offensive Security
+      items:
+        - Web Application & API Penetration Testing
+        - Active Directory Attacks & Privilege Escalation
+        - Windows & Linux Exploitation
+        - Credential Extraction & Password Cracking (Hashcat, John)
+    - title: Security Engineering
+      items:
+        - Secure Code Review (SQLi, XSS, OWASP Top 10)
+        - DevSecOps & CI/CD Security (SAST/DAST)
+        - Cloud Security (AWS, GCP, Docker, Kubernetes)
+        - SSL/TLS, OAuth2, OIDC, HashiCorp Vault
+    - title: Security Tools
+      items:
+        - Burp Suite, Metasploit, Nmap, Rustscan
+        - BloodHound, Gobuster, ffuf, SQLMap
+        - Snyk, GitHub Actions Security Workflows
+        - Prometheus, Grafana, Splunk, CloudWatch
+    - title: Development
+      items:
+        - Python, JavaScript/TypeScript, Node.js
+        - React.js, Vue.js, Next.js, Strapi
+        - PostgreSQL, MongoDB, GraphQL, REST APIs
+        - Docker, Kubernetes, Ansible, Terraform
+
+- title: Certifications
+  type: time_table
+  contents:
+    - year: Dec 2025
+      items:
+        - '<a href="https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74" target="_blank">OSCP+ (OffSec Certified Professional Plus)</a> — Expires Dec 2028'
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Master of Technology (MTech)
+      institution: Victoria University, Australia
+      year: 2018 - 2020
+      description:
+        - Computer Software Engineering
+    - title: Bachelor of Engineering (BE)
+      institution: Sankalchand Patel College of Engineering, India
+      year: 2012 - 2016
+      description:
+        - Computer Engineering

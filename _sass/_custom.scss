@@ -1,0 +1,155 @@
+/*******************************************************************************
+ * Custom Styles for Akash Bhavsar - Security Portfolio
+ * Making it unique and professional
+ ******************************************************************************/
+
+// ============================================
+// 1. HACKER-STYLE TERMINAL EFFECT FOR CODE BLOCKS
+// ============================================
+pre, code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+// Terminal-like code blocks
+pre.highlight {
+  border-left: 4px solid var(--global-theme-color);
+  position: relative;
+
+  &::before {
+    content: "┌── output";
+    display: block;
+    font-size: 0.75rem;
+    color: var(--global-theme-color);
+    margin-bottom: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.7;
+  }
+}
+
+// ============================================
+// 2. GLOWING ACCENT EFFECT ON LINKS
+// ============================================
+a {
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-shadow: 0 0 8px var(--global-theme-color);
+  }
+}
+
+// ============================================
+// 3. CUSTOM PROFILE STYLING
+// ============================================
+.profile {
+  .more-info {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+
+    p {
+      margin-bottom: 0.3rem;
+      padding-left: 0.5rem;
+      border-left: 2px solid var(--global-theme-color);
+    }
+  }
+
+  img {
+    border: 3px solid var(--global-theme-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px var(--global-theme-color);
+    }
+  }
+}
+
+// ============================================
+// 4. CARD-STYLE PROJECT ITEMS
+// ============================================
+.projects {
+  .card {
+    border: 1px solid var(--global-divider-color);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: var(--global-theme-color);
+      box-shadow: 0 4px 20px rgba(0, 171, 55, 0.2);
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// ============================================
+// 5. CUSTOM NAVBAR STYLING
+// ============================================
+header {
+  nav.navbar {
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--global-divider-color);
+  }
+}
+
+// ============================================
+// 6. BLOG POST STYLING
+// ============================================
+.post {
+  .post-title {
+    border-bottom: 2px solid var(--global-theme-color);
+    padding-bottom: 0.5rem;
+  }
+}
+
+// ============================================
+// 7. FOOTER STYLING
+// ============================================
+footer {
+  border-top: 1px solid var(--global-theme-color);
+}
+
+// ============================================
+// 8. SECURITY BADGE EFFECT FOR TAGS
+// ============================================
+.badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+// ============================================
+// 9. SMOOTH SCROLL BEHAVIOR
+// ============================================
+html {
+  scroll-behavior: smooth;
+}
+
+// ============================================
+// 10. ANIMATED TYPING CURSOR FOR SUBTITLE
+// ============================================
+.header-bar {
+  .subtitle {
+    &::after {
+      content: "|";
+      animation: blink 1s infinite;
+      color: var(--global-theme-color);
+    }
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+// ============================================
+// 11. MODERN BUTTON STYLING
+// ============================================
+.btn-primary,
+.btn {
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 171, 55, 0.3);
+  }
+}

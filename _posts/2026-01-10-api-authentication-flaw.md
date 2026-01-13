@@ -1,13 +1,11 @@
 ---
-title: "Breaking Down an API Authentication Flaw"
-date: 2026-01-10
-categories:
-  - Blog
-tags:
-  - AppSec
-  - API Security
-  - OWASP
-  - Writeups
+layout: post
+title: Breaking Down an API Authentication Flaw
+date: 2026-01-10 12:00:00
+description: A walkthrough of a real-world JWT 'none' algorithm vulnerability
+tags: appsec api-security owasp
+categories: writeups
+giscus_comments: true
 ---
 
 In this post, I walk through a real-world API authentication issue, why it happens, and how teams can prevent it.
@@ -24,11 +22,22 @@ The API accepted JWTs signed with the `none` algorithm. This is a classic mistak
 2. Developers don't explicitly enforce algorithm validation
 3. Token verification only checks the signature matches—not that a signature exists
 
-```
+```python
 # Malicious token with 'none' algorithm
-Header: {"alg": "none", "typ": "JWT"}
-Payload: {"user_id": "admin", "role": "administrator"}
-Signature: (empty)
+import base64
+import json
+
+header = {"alg": "none", "typ": "JWT"}
+payload = {"user_id": "admin", "role": "administrator"}
+
+# Encode without signature
+token = (
+    base64.urlsafe_b64encode(json.dumps(header).encode()).rstrip(b'=').decode() +
+    "." +
+    base64.urlsafe_b64encode(json.dumps(payload).encode()).rstrip(b'=').decode() +
+    "."
+)
+print(token)
 ```
 
 ## Impact
@@ -46,6 +55,19 @@ Here's how to prevent this vulnerability:
 2. **Reject tokens with `alg: none`** at the validation layer
 3. **Use well-maintained JWT libraries** with secure defaults
 4. **Implement token binding** to tie tokens to specific sessions
+
+```python
+# Secure JWT verification
+import jwt
+
+def verify_token(token):
+    return jwt.decode(
+        token,
+        SECRET_KEY,
+        algorithms=["HS256"],  # Explicitly allow only HS256
+        options={"require": ["exp", "iat"]}
+    )
+```
 
 ## Defensive Takeaways
 
