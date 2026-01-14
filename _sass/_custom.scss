@@ -153,3 +153,402 @@ html {
     box-shadow: 0 4px 12px rgba(0, 171, 55, 0.3);
   }
 }
+
+// ============================================
+// 12. MODERN GLASSMORPHISM BUBBLE BACKGROUND
+// ============================================
+
+// Bubble container - fixed background
+.bubble-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+// Individual bubble styles
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 8s infinite ease-in-out;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(255, 255, 255, 0.6),
+    0 0 60px rgba(255, 255, 255, 0.4),
+    0 0 80px rgba(255, 255, 255, 0.2);
+  filter: blur(20px);
+}
+
+.bubble:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  background-color: #3b82f6;
+  top: 10%;
+  left: 6%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  background-color: #1d4ed8;
+  top: 70%;
+  left: 80%;
+  animation-duration: 9s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  background-color: #06b6d4;
+  top: 20%;
+  left: 70%;
+  animation-duration: 10s;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(147, 197, 253, 0.6);
+  top: 70%;
+  left: 20%;
+  animation-duration: 6s;
+  animation-delay: 3s;
+}
+
+.bubble:nth-child(5) {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(56, 189, 248, 0.5);
+  top: 10%;
+  left: 40%;
+  animation-duration: 8s;
+  animation-delay: 4s;
+}
+
+.bubble:nth-child(6) {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(99, 102, 241, 0.5);
+  top: 80%;
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) scale(1.05);
+  }
+  66% {
+    transform: translateY(20px) translateX(-20px) scale(0.95);
+  }
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+
+// CSS-only bubbles applied to container.mt-5 only
+.container.mt-5 {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 2rem;
+
+  // Base gradient background
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background:
+      // Bubble 1 - Blue
+      radial-gradient(circle at 6% 10%, rgba(59, 130, 246, 0.4) 0%, transparent 20%),
+      // Bubble 2 - Deep Blue
+      radial-gradient(circle at 90% 80%, rgba(29, 78, 216, 0.35) 0%, transparent 18%),
+      // Bubble 3 - Cyan
+      radial-gradient(circle at 80% 15%, rgba(6, 182, 212, 0.4) 0%, transparent 22%),
+      // Bubble 4 - Light Blue
+      radial-gradient(circle at 15% 75%, rgba(147, 197, 253, 0.35) 0%, transparent 15%),
+      // Bubble 5 - Sky Blue
+      radial-gradient(circle at 50% 5%, rgba(56, 189, 248, 0.3) 0%, transparent 18%),
+      // Bubble 6 - Indigo
+      radial-gradient(circle at 60% 90%, rgba(99, 102, 241, 0.35) 0%, transparent 15%),
+      // Base
+      var(--global-bg-color);
+    filter: blur(40px);
+    animation: bubbleShift 15s ease-in-out infinite alternate;
+    border-radius: 24px;
+  }
+
+  // Secondary layer for depth
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.15) 0%, transparent 25%),
+      radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 20%);
+    filter: blur(50px);
+    animation: bubbleFloat 20s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+    border-radius: 24px;
+  }
+}
+
+@keyframes bubbleShift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, 3%) scale(1.02);
+  }
+  100% {
+    transform: translate(-1%, -2%) scale(0.98);
+  }
+}
+
+@keyframes bubbleFloat {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(3%, -2%);
+    opacity: 1;
+  }
+}
+
+// Dark theme adjustments - more vibrant bubbles
+html[data-theme="dark"] .container.mt-5 {
+  &::before {
+    background:
+      radial-gradient(circle at 6% 10%, rgba(59, 130, 246, 0.5) 0%, transparent 22%),
+      radial-gradient(circle at 90% 80%, rgba(29, 78, 216, 0.45) 0%, transparent 20%),
+      radial-gradient(circle at 80% 15%, rgba(6, 182, 212, 0.5) 0%, transparent 25%),
+      radial-gradient(circle at 15% 75%, rgba(147, 197, 253, 0.4) 0%, transparent 18%),
+      radial-gradient(circle at 50% 5%, rgba(56, 189, 248, 0.4) 0%, transparent 20%),
+      radial-gradient(circle at 60% 90%, rgba(99, 102, 241, 0.45) 0%, transparent 18%),
+      var(--global-bg-color);
+    filter: blur(50px);
+  }
+
+  &::after {
+    background:
+      radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.25) 0%, transparent 28%),
+      radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.2) 0%, transparent 22%);
+    filter: blur(60px);
+  }
+}
+
+// ============================================
+// 13. GLASSMORPHISM CARD STYLES
+// ============================================
+.card,
+.project-card,
+.news,
+article.post-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: cardEntry 0.8s ease-out;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+
+  // Subtle top shine
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 100%
+    );
+    border-radius: 20px 20px 0 0;
+    pointer-events: none;
+  }
+
+  // Glow effect on hover
+  &::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.3),
+      rgba(6, 182, 212, 0.3),
+      rgba(59, 130, 246, 0.3)
+    );
+    border-radius: 22px;
+    opacity: 0;
+    z-index: -1;
+    filter: blur(20px);
+    transition: opacity 0.5s ease;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    box-shadow:
+      0 25px 70px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+// Dark theme card adjustments
+html[data-theme="dark"] {
+  .card,
+  .project-card,
+  .news,
+  article.post-card {
+    background: linear-gradient(
+      135deg,
+      rgba(71, 71, 86, 0.4) 0%,
+      rgba(45, 45, 58, 0.4) 100%
+    );
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@keyframes cardEntry {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+// ============================================
+// 14. GLASSMORPHISM CONTROL PANELS & SECTIONS
+// ============================================
+.control-panel,
+.sidebar,
+.toc,
+.pagination {
+  background: linear-gradient(
+    135deg,
+    rgba(40, 40, 50, 0.3) 0%,
+    rgba(30, 30, 38, 0.3) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      inset 0 2px 8px rgba(0, 0, 0, 0.15),
+      0 0 20px rgba(59, 130, 246, 0.15);
+  }
+}
+
+// ============================================
+// 15. GLASSMORPHISM BUTTONS
+// ============================================
+.btn,
+button:not(.navbar-toggler) {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--global-text-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+    &::before {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
