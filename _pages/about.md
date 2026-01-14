@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: 🔐 Application Security Engineer | OSCP+ | Penetration Tester | DevSecOps
 
@@ -27,6 +27,25 @@ latest_posts:
   limit: 3
 ---
 
+<div class="hero-stats">
+  <div class="stat-item">
+    <span class="stat-number">8+</span>
+    <span class="stat-label">Years Experience</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">OSCP+</span>
+    <span class="stat-label">Certified</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">50+</span>
+    <span class="stat-label">Security Assessments</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">HTB</span>
+    <span class="stat-label">Active Player</span>
+  </div>
+</div>
+
 I'm an **OSCP+ certified Application Security Engineer** with **8+ years of experience** spanning full-stack development, penetration testing, and DevSecOps. Currently at **Sydney Tools**, I identify and exploit security vulnerabilities in business-critical applications while leading secure development practices across the engineering team.
 
 My journey from **Senior Full Stack Developer to Security Engineer** gives me a unique perspective. I understand how developers think, which makes me effective at both finding vulnerabilities and providing practical remediation guidance.
@@ -52,13 +71,16 @@ My journey from **Senior Full Stack Developer to Security Engineer** gives me a 
 
 ## 🏆 Highlights
 
-<div class="certifications" style="margin: 1.5rem 0;">
+<div class="certifications" style="margin: 1.5rem 0; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
   <a href="https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74" target="_blank" rel="noopener noreferrer">
     <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/169502822" alt="OSCP+ Certification Badge" style="width: 150px; height: auto; border-radius: 8px; transition: transform 0.2s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </a>
+  <a href="https://app.hackthebox.com/profile/2430357" target="_blank" rel="noopener noreferrer">
+    <img src="https://www.hackthebox.com/badge/image/2430357" alt="Hack The Box Profile" style="height: auto; width: 200px; border-radius: 8px; transition: transform 0.2s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15); image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
 </div>
 
-- **OSCP+ Certified** [Verify Credential](https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74) (Issued Dec 2025, Expires Dec 2028)
+- **OSCP+ Certified** [Verify Credential](https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74) (Issued Dec 2025)
 - **Hack The Box** [View Profile](https://app.hackthebox.com/profile/2430357) | Active practitioner (Era, Mirage, Outbound, Faraday, Voleur, Sorcery)
 - **Security Leader**: Mentor developers, conduct security training, lead incident response
 - **Full-Stack to Security**: Unique perspective bridging development and security

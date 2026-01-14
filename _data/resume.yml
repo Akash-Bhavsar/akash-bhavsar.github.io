@@ -1,0 +1,125 @@
+
+- title: General Information
+
+  type: map
+  contents:
+    - name: Full Name
+      value: Akash Bhavsar
+    - name: Role
+      value: Application Security Engineer | Penetration Tester
+    - name: Location
+      value: Melbourne, Victoria, Australia
+    - name: Certifications
+      value: OSCP, OSCP+
+    - name: Experience
+      value: 8+ Years
+
+- title: Experience
+
+  type: time_table
+  contents:
+    - title: Application Security Engineer
+      institution: Sydney Tools PTY LTD
+      location: Sydney, Australia
+      year: 11/2023 - Present
+      description:
+        - Methodically identify, exploit, and document security vulnerabilities in business-critical web applications and APIs, utilizing tools like Burp Suite and Metasploit to mitigate OWASP Top 10 threats.
+        - Spearheaded the secure code review process, conducting rigorous Pull Request (PR) reviews to enforce secure coding standards. Acted as the final quality gatekeeper to prevent vulnerabilities (SQLi, XSS) from reaching production.
+        - Orchestrated secure CI/CD pipelines using GitHub Actions, designing custom workflows that automate security testing (SAST/DAST) and streamline deployment, ensuring rapid yet secure delivery cycles.
+        - Fortified cloud infrastructure by implementing best practices for AWS and GCP environments. Hardened Docker containers and Kubernetes clusters to minimize the attack surface and ensure robust runtime protection.
+        - Managed and mentored a team of developers and interns, overseeing daily operations. Led the end-to-end recruitment process by conducting technical interviews and hiring new talent, fostering a high-performance engineering culture.
+        - Designed and delivered comprehensive training programs for new employees and interns, focusing on secure coding principles and operational best practices to reduce vulnerability introduction rates.
+        - Architected secure network layers by configuring Nginx as a reverse proxy and managing SSL/TLS certificate lifecycles, ensuring encrypted communication and defense against Man-in-the-Middle attacks.
+        - Acted as the primary point of contact for security incidents, analyzing alerts and executing rapid triage and escalation procedures to maintain operational resilience and minimize business impact.
+
+    - title: Offensive Security Practitioner
+      institution: Hack The Box
+      year: 2023 - Present
+      description:
+        - Advanced penetration testing on multiple machines (Era, Mirage, Outbound, Faraday, Voleur, Sorcery)
+        - Windows & Linux exploitation, web application vulnerabilities, and Active Directory attacks
+        - Web exploitation techniques including SQLi, SSTI, credential harvesting, and CVE exploitation
+        - Active Directory enumeration and privilege escalation using BloodHound, Kerberoasting
+        - Post-exploitation techniques - DPAPI decryption, NTDS.dit extraction, persistence creation
+        - Secure source code reviews identifying logic flaws and OWASP Top 10 vulnerabilities
+
+    - title: Senior Full Stack Engineer
+      institution: Josephmark PTY LTD
+      location: Brisbane, Australia
+      year: 05/2023 - 10/2023
+      description:
+        - Directed the strategic migration of legacy systems to a modern Strapi and Next.js architecture, embedding security controls at the design phase ("Security by Design") to ensure the new framework eliminated historical technical debt and vulnerability inheritance.
+        - Led the end-to-end development of bespoke Strapi plugins and custom backend modules, optimizing system performance and ensuring seamless, secure data handling between microservices.
+        - Designed and implemented granular Role-Based Access Control (RBAC) and logical data segregation within the CMS ecosystem, ensuring strict adherence to the Principle of Least Privilege for diverse user groups.
+        - Integrated complex backend services with Next.js frontends, engineering robust connections that prioritized responsive user experience while enforcing secure data rendering and state management practices.
+        - Collaborated on organizational change management and service desk initiatives, aligning technical deliverables with corporate IT policies and security governance procedures to meet strict compliance goals.
+        - Proactively evaluated and prototyped emerging tools for the development stack, driving the modernization of integration processes and optimizing the software delivery lifecycle for efficiency and security.
+
+    - title: Software Development Analyst / Full Stack Developer
+      institution: WilldooIT Pty Ltd
+      location: Port Melbourne
+      year: 04/2016 - 04/2023
+      description:
+        - Spearheaded the end-to-end development of complex SaaS and B2B ERP systems using Python, Node.js, React.js, and Vue.js (TypeScript). Designed responsive, modern UIs with Tailwind CSS while strictly adhering to SOLID principles.
+        - Engineered robust CI/CD pipelines using Ansible, Buildkite, Jenkins, and GitHub Actions/Workflows. Automated Docker containerization and Kubernetes orchestration to achieve zero-downtime deployments and consistent environments.
+        - Orchestrated cloud-native infrastructure on AWS and GCP, managing Linux server images and custom configurations. Implemented infrastructure-as-code to streamline provisioning and optimize server performance.
+        - Architected scalable microservices and implemented event-driven architecture using Kafka for real-time data processing. Developed high-performance REST APIs and GraphQL endpoints (tested via Postman) to facilitate seamless communication between services.
+        - Designed complex, high-availability database schemas for PostgreSQL, MongoDB, and SQL. Implemented robust database backup strategies using WAL scripts and performed rigorous optimization for data integrity.
+        - Architected secure authentication flows using OAuth2 and OIDC for payment gateway integrations and SMTP services. Implemented HashiCorp Vault for secret management and integrated Snyk for vulnerability scanning.
+        - Enhanced system reliability by implementing monitoring stacks with Prometheus, Grafana, Splunk, and AWS CloudWatch. Leveraged AI coding tools like Claude, Gemini, and Codex to accelerate development cycles.
+
+    - title: Application Engineer
+      institution: Odoo
+      year: 2016 - 2018
+      description:
+        - Integrated ERP solutions and IoT devices for enterprise resource planning
+        - Designed complex reports and customized business processes
+        - Worked on database integrity, workflow automation, and internationalization
+
+- title: Technical Skills
+  type: nested_list
+  contents:
+    - title: Offensive Security
+      items:
+        - Web Application & API Penetration Testing
+        - Active Directory Attacks & Privilege Escalation
+        - Windows & Linux Exploitation
+        - Credential Extraction & Password Cracking (Hashcat, John)
+    - title: Security Engineering
+      items:
+        - Secure Code Review (SQLi, XSS, OWASP Top 10)
+        - DevSecOps & CI/CD Security (SAST/DAST)
+        - Cloud Security (AWS, GCP, Docker, Kubernetes)
+        - SSL/TLS, OAuth2, OIDC, HashiCorp Vault
+    - title: Security Tools
+      items:
+        - Burp Suite, Metasploit, Nmap, Rustscan
+        - BloodHound, Gobuster, ffuf, SQLMap
+        - Snyk, GitHub Actions Security Workflows
+        - Prometheus, Grafana, Splunk, CloudWatch
+    - title: Development
+      items:
+        - Python, JavaScript/TypeScript, Node.js
+        - React.js, Vue.js, Next.js, Strapi
+        - PostgreSQL, MongoDB, GraphQL, REST APIs
+        - Docker, Kubernetes, Ansible, Terraform
+- title: Certifications
+  type: time_table
+  contents:
+    - year: Dec 2025
+      items:
+        - '<a href="https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74#acc.sKvkMbBG" target="_blank">OSCP+ (OffSec Certified Professional Plus)</a>'
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Master of Technology (MTech)
+      institution: Victoria University, Australia
+      year: 2018 - 2020
+      description:
+        - Computer Software Engineering
+    - title: Bachelor of Engineering (BE)
+      institution: Sankalchand Patel College of Engineering, India
+      year: 2012 - 2016
+      description:
+        - Computer Engineering
