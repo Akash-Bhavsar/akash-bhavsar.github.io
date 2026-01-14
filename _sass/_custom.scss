@@ -606,14 +606,14 @@ button:not(.navbar-toggler) {
     font-size: 2rem;
     font-weight: 700;
     font-family: 'JetBrains Mono', monospace;
-    color: #22223b; /* Charcoal gray */
+    color: var(--global-text-color);
     text-shadow: 0 2px 8px rgba(34,34,59,0.08);
   }
 
   .stat-label {
     display: block;
     font-size: 0.85rem;
-    color: #22223b; /* Charcoal gray */
+    color: var(--global-text-color);
     margin-top: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -629,10 +629,31 @@ button:not(.navbar-toggler) {
 html[data-theme="dark"] .hero-stats {
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.15) 0%,
-    rgba(6, 182, 212, 0.15) 100%
+    rgba(59, 130, 246, 0.2) 0%,
+    rgba(6, 182, 212, 0.2) 100%
   );
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.15);
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  .stat-number {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  }
+
+  .stat-label {
+    color: rgba(255, 255, 255, 0.8);
+  }
 }
 
 // ============================================
@@ -853,7 +874,7 @@ blockquote {
 
   .desc {
     font-family: 'JetBrains Mono', monospace;
-    color: #22223b; /* Charcoal gray for readability */
+    color: var(--global-text-color);
     background: none;
     -webkit-background-clip: initial;
     -webkit-text-fill-color: initial;
@@ -1080,6 +1101,49 @@ button:focus {
   -webkit-backdrop-filter: none !important;
   border: 1px solid #e0e0e0 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+// Dark mode styling for resume cards
+html[data-theme="dark"] .resume .card {
+  background: linear-gradient(
+    135deg,
+    rgba(71, 71, 86, 0.4) 0%,
+    rgba(45, 45, 58, 0.4) 100%
+  ) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  color: var(--global-text-color) !important;
+}
+
+// Ensure resume text is visible in dark mode
+html[data-theme="dark"] .resume {
+  .card-title,
+  .card-text,
+  .font-weight-light,
+  .font-weight-bold,
+  p,
+  li,
+  td,
+  th,
+  span {
+    color: var(--global-text-color) !important;
+  }
+
+  // Ensure list items are visible
+  .list-group-item {
+    background-color: transparent !important;
+    border-color: rgba(59, 130, 246, 0.2) !important;
+    color: var(--global-text-color) !important;
+  }
+
+  // Ensure table text is visible
+  table {
+    color: var(--global-text-color) !important;
+  }
 }
 
 // ============================================
