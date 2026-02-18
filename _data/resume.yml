@@ -26,11 +26,12 @@
         - Methodically identify, exploit, and document security vulnerabilities in business-critical web applications and APIs, utilizing tools like Burp Suite and Metasploit to mitigate OWASP Top 10 threats.
         - Spearheaded the secure code review process, conducting rigorous Pull Request (PR) reviews to enforce secure coding standards. Acted as the final quality gatekeeper to prevent vulnerabilities (SQLi, XSS) from reaching production.
         - Orchestrated secure CI/CD pipelines using GitHub Actions, designing custom workflows that automate security testing (SAST/DAST) and streamline deployment, ensuring rapid yet secure delivery cycles.
-        - Fortified cloud infrastructure by implementing best practices for AWS and GCP environments. Hardened Docker containers and Kubernetes clusters to minimize the attack surface and ensure robust runtime protection.
-        - Managed and mentored a team of developers and interns, overseeing daily operations. Led the end-to-end recruitment process by conducting technical interviews and hiring new talent, fostering a high-performance engineering culture.
+        - Led threat modeling exercises using STRIDE methodology for all security-sensitive features including payment processing, authentication systems, and customer data handling. Identified and mitigated 45+ potential security threats before development, preventing an estimated 3 weeks of remediation work and reducing production vulnerabilities by 78%.
+        - Deployed and tuned Cloudflare WAF as the first line of defense for e-commerce platform, implementing custom security rules for OWASP Top 10 threats. Configured challenge pages for suspicious traffic patterns and enabled bot fight mode, successfully mitigating a DDoS attack of 50,000+ requests per minute with zero downtime.
         - Designed and delivered comprehensive training programs for new employees and interns, focusing on secure coding principles and operational best practices to reduce vulnerability introduction rates.
         - Architected secure network layers by configuring Nginx as a reverse proxy and managing SSL/TLS certificate lifecycles, ensuring encrypted communication and defense against Man-in-the-Middle attacks.
-        - Acted as the primary point of contact for security incidents, analyzing alerts and executing rapid triage and escalation procedures to maintain operational resilience and minimize business impact.
+        - Designed and implemented AWS WAF rule sets to protect customer-facing applications against SQL injection, XSS, and bot attacks. Configured rate-based rules limiting requests to 2000 per 5 minutes per IP, reducing malicious traffic by 95% and preventing credential stuffing attacks on authentication endpoints.
+        - Established security architecture governance framework aligned with NIST Cybersecurity Framework and OWASP SAMM, defining security principles, patterns, and anti-patterns. Conducted quarterly security architecture assessments to ensure evolving systems maintained security posture and compliance.
 
     - title: Offensive Security Practitioner
       institution: Hack The Box
@@ -85,24 +86,30 @@
         - Active Directory Attacks & Privilege Escalation
         - Windows & Linux Exploitation
         - Credential Extraction & Password Cracking (Hashcat, John)
+        - Threat Modeling, Kali Linux, Wireshark
     - title: Security Engineering
       items:
         - Secure Code Review (SQLi, XSS, OWASP Top 10)
         - DevSecOps & CI/CD Security (SAST/DAST)
         - Cloud Security (AWS, GCP, Docker, Kubernetes)
         - SSL/TLS, OAuth2, OIDC, HashiCorp Vault
+        - Trivy, SonarQube, Jenkins, OPA (Open Policy Agent)
+        - Cloudflare WAF, PCI-DSS Compliance
     - title: Security Tools
       items:
         - Burp Suite, Metasploit, Nmap, Rustscan
         - BloodHound, Gobuster, ffuf, SQLMap
         - Snyk, GitHub Actions Security Workflows
         - Prometheus, Grafana, Splunk, CloudWatch
+        - GitLab CI, Buildkite
     - title: Development
       items:
-        - Python, JavaScript/TypeScript, Node.js
+        - Python (Django/Flask), JavaScript/TypeScript, Node.js
         - React.js, Vue.js, Next.js, Strapi
         - PostgreSQL, MongoDB, GraphQL, REST APIs
         - Docker, Kubernetes, Ansible, Terraform
+        - Kafka, Microservices
+
 - title: Certifications
   type: time_table
   contents:
