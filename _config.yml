@@ -10,7 +10,7 @@ baseurl: ""
 lang: en
 
 logo: /assets/img/prof_pic.jpg
-image: /assets/img/prof_pic.jpg
+image: /assets/img/og-banner.png
 
 social:
   name: Akash Bhavsar
@@ -38,7 +38,7 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /assets/img/prof_pic.jpg
+      image: /assets/img/og-banner.png
   - scope:
       path: ""
       type: posts

@@ -1,7 +1,6 @@
 ---
 layout: home
 permalink: /
-title: Home
 hero_label: APPLICATION SECURITY ENGINEER
 hero_name: "Akash <span class=\"accent\">Bhavsar</span>"
 hero_bio: >

@@ -2,6 +2,7 @@
 layout: about
 title: About
 permalink: /about/
+image: /assets/img/prof_pic.jpg
 description: Application Security Engineer, OSCP+ certified, 8+ years across full-stack development, penetration testing, and DevSecOps.
 ---
 

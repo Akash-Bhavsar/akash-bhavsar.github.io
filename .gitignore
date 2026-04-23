@@ -20,3 +20,7 @@ vendor
 # graphify
 graphify-out/
 .graphify_cache/
+
+# Claude Code
+.claude/
+CLAUDE.md
