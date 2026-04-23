@@ -1,0 +1,45 @@
+{% comment %}
+  Person + ProfilePage JSON-LD for the About page.
+  Complements jekyll-seo-tag's WebSite schema with an explicit entity card.
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": {{ site.author.name | jsonify }},
+    "jobTitle": "Application Security Engineer",
+    "description": "OSCP+ certified Application Security Engineer with 8+ years across full-stack development, penetration testing, and DevSecOps.",
+    "url": "{{ '/about/' | absolute_url }}",
+    "image": "{{ site.image | absolute_url }}",
+    "email": "mailto:{{ site.author.email }}",
+    "knowsAbout": [
+      "Application Security",
+      "Penetration Testing",
+      "DevSecOps",
+      "Offensive Security",
+      "Active Directory Exploitation",
+      "Web Application Security",
+      "Secure Code Review",
+      "Cloud Security"
+    ],
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Offensive Security Certified Professional (Plus)",
+      "credentialCategory": "certification",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Offensive Security",
+        "url": "https://www.offsec.com"
+      },
+      "url": "https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74"
+    },
+    "sameAs": [
+      "https://github.com/Akash-Bhavsar",
+      "https://www.linkedin.com/in/akash-bhavsar",
+      "https://app.hackthebox.com/users/2430357"
+    ]
+  }
+}
+</script>

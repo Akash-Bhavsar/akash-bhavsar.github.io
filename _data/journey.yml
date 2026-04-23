@@ -1,0 +1,15 @@
+- year: "2017"
+  title: Full-Stack Developer
+  desc: Started shipping production web apps — Python, Node.js, React, Vue. Cut my teeth on real-world bugs, deploys, and on-call pages.
+
+- year: "2020"
+  title: Senior Full-Stack Developer
+  desc: Led backend architecture on high-traffic platforms. First serious encounter with OWASP Top 10 during incident response — the pivot started here.
+
+- year: "2023"
+  title: DevSecOps & Code Review
+  desc: Moved into the security side — SAST/DAST pipelines, secure code review, threat modelling. Started HTB in parallel to sharpen offensive skills.
+
+- year: "2025"
+  title: OSCP+ & AppSec Engineer
+  desc: Certified OSCP+ (Dec 2025). Now leading application security at Sydney Tools — pentesting, code review, developer training.

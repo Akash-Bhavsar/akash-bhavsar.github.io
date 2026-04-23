@@ -1,0 +1,68 @@
+---
+layout: default
+---
+{% assign cat_class = page.category | default: 'MISC' | downcase %}
+{% assign diff_class = page.difficulty | default: 'EASY' | downcase %}
+
+<div class="page-wrap">
+  {% include nav.html %}
+
+  <header class="hero">
+    <div class="hero-eyebrow">
+      {% if page.category %}<span class="badge badge-{{ cat_class }}">{{ page.category }}</span>{% endif %}
+      {% if page.difficulty %}<span class="badge badge-{{ diff_class }}">{{ page.difficulty }}</span>{% endif %}
+      <span class="hero-sep"></span>
+      <span class="hero-meta-text">
+        {% if page.season %}{{ page.season }}&nbsp;·&nbsp;{% endif %}
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+      </span>
+    </div>
+    <h1>{% if page.title_html %}{{ page.title_html }}{% else %}{{ page.title }}{% endif %}</h1>
+    {% if page.description %}<p class="hero-desc">{{ page.description }}</p>{% endif %}
+  </header>
+
+  {% if page.category or page.os or page.protections %}
+  <div class="info-strip">
+    {% if page.category %}
+    <div class="info-cell">
+      <div class="info-label">Category</div>
+      <div class="info-value cyan">{{ page.category_label | default: page.category }}</div>
+    </div>
+    {% endif %}
+    {% if page.os %}
+    <div class="info-cell">
+      <div class="info-label">OS</div>
+      <div class="info-value">{{ page.os }}</div>
+    </div>
+    {% endif %}
+    {% if page.protections %}
+    <div class="info-cell">
+      <div class="info-label">Protections</div>
+      <div class="info-value {% if page.protections == 'None' %}green{% else %}yellow{% endif %}">{{ page.protections }}</div>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="prose prose-wide">
+    {{ content }}
+  </div>
+
+  <footer class="writeup-footer">
+    <div class="author-block">
+      <div class="author-avatar" aria-hidden="true"></div>
+      <div>
+        <div class="author-info-name">{{ site.author.name }}</div>
+        <div class="author-info-role">AppSec · OSCP+</div>
+      </div>
+    </div>
+    {% if page.tags %}
+    <div class="footer-tags">
+      {% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+    </div>
+    {% endif %}
+  </footer>
+
+  {% include footer.html %}
+</div>
+{% if page.password %}{% include writeup-unlock.html %}{% endif %}

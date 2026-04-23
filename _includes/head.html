@@ -1,0 +1,30 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url }}">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} — Writeups" href="{{ '/feed.xml' | absolute_url }}">
+  {% if page.collection == 'writeups' %}{% include writeup-head.html %}{% endif %}
+  {% if page.layout == 'about' %}{% include about-head.html %}{% endif %}
+  {% if page.collection == 'projects' %}{% include project-head.html %}{% endif %}
+  {% if page.url == '/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "url": {{ site.url | append: '/' | jsonify }},
+    "description": {{ site.description | strip_newlines | strip | jsonify }},
+    "author": { "@type": "Person", "name": {{ site.author.name | jsonify }} },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ site.url }}/writeups/?q={% raw %}{search_term_string}{% endraw %}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  {% endif %}
+</head>

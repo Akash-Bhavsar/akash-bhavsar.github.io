@@ -1,0 +1,51 @@
+# Secrets / credentials to strip from HTB writeups before publishing.
+#
+# `literal` — exact string → replacement. Applied as plain text replace.
+# `regex`   — Ruby regex (string form) → replacement. Applied via gsub.
+#
+# Reason each entry is here: these are real credentials, reset tokens, NTLM
+# hashes, or API keys that were discovered during an HTB engagement. They
+# belong in private notes, not a public writeup — HTB boxes get recycled,
+# and mirroring real creds/hashes gives future attackers a shortcut.
+#
+# When adding a new writeup that contains a new secret, add an entry here
+# rather than editing the source markdown. Source-of-truth stays clean.
+
+literal:
+  # Interpreter — Mirth DB password
+  "MirthPass123!": "[REDACTED_PASSWORD]"
+
+  # Pirate — Administrator NTLM + domain user hashes
+  "598295e78bd72d66f837997baf715171": "[REDACTED_NTLM_HASH]"
+  "43b831a8d83a02427ea7a66ac46cd41b": "[REDACTED_NTLM_HASH]"
+  "gODNiUG69Mz77SIZ": "[REDACTED_TOKEN]"
+
+  # Silentium — Flowise API key + internal credentials
+  "hWp_8jB76zi0VtKSr2d9TfGK1fm6NuNPg1uA-8FsUJc": "[REDACTED_API_KEY]"
+  "F1l3_d0ck3r": "[REDACTED_PASSWORD]"
+  "r04D!!_R4ge": "[REDACTED_PASSWORD]"
+
+  # Garfield — krbtgt AES + NTLM, Administrator NTLM
+  "d6c93cbe006372adb8403630f9e86594f52c8105a52f9b21fef62e9c7a75e240": "[REDACTED_AES256_KEY]"
+  "445aa4221e751da37a10241d962780e2": "[REDACTED_NTLM_HASH]"
+  "ee238f6debc752010428f20875b092d5": "[REDACTED_NTLM_HASH]"
+  "WhoKnows123!": "[REDACTED_PASSWORD]"
+
+  # Sendai / RustyKey — NTLM hashes
+  "9ed35c68b88f35007aa32c14c1332ce7": "[REDACTED_NTLM_HASH]"
+  "f7a351e12f70cc177a1d5bd11b28ac26": "[REDACTED_NTLM_HASH]"
+
+  # Kobold — API password
+  "ComplexP@sswordAdmin1928": "[REDACTED_PASSWORD]"
+
+  # VariaType — GitBot password
+  "G1tB0t_Acc3ss_2025!": "[REDACTED_PASSWORD]"
+
+regex:
+  # PEM blocks (RSA / OpenSSH / ECDSA private keys) — never publish verbatim
+  - pattern: "-----BEGIN (RSA |OPENSSH |EC |DSA |ENCRYPTED )?PRIVATE KEY-----[\\s\\S]*?-----END \\1?PRIVATE KEY-----"
+    replacement: "-----BEGIN PRIVATE KEY-----\n[REDACTED_PRIVATE_KEY]\n-----END PRIVATE KEY-----"
+
+  # SSH authorized_keys line form (ssh-rsa / ssh-ed25519 AAAA... user@host)
+  - pattern: "(ssh-(rsa|ed25519|dss|ecdsa)) [A-Za-z0-9+/=]{50,}(\\s+[\\w@.-]+)?"
+    replacement: "\\1 [REDACTED_SSH_KEY]"

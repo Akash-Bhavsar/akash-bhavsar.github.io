@@ -1,0 +1,159 @@
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn  = document.getElementById('theme-toggle');
+    var saved = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', saved);
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+    var burger = document.getElementById('hamburger');
+    var links  = document.getElementById('topnav-links');
+    if (burger && links) {
+      burger.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    var year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
+
+    // Terminal-card header + copy button on writeup code blocks
+    var ICON_COPY    = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    var ICON_COPIED  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    var ICON_TERM    = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>';
+    window.__initCodeBlocks = function () {
+    document.querySelectorAll('.prose div.highlighter-rouge').forEach(function (block) {
+      if (block.querySelector('.code-head')) return;
+      var langMatch = (block.className || '').match(/language-([^\s]+)/);
+      var lang = langMatch ? langMatch[1] : 'shell';
+      if (lang === 'plaintext') lang = 'output';
+
+      var head = document.createElement('div');
+      head.className = 'code-head';
+      var label = document.createElement('span');
+      label.className = 'code-lang-label';
+      label.innerHTML = ICON_TERM + '<span>' + lang + '</span>';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'code-copy';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.innerHTML = ICON_COPY;
+      btn.addEventListener('click', function () {
+        var code = block.querySelector('code');
+        if (!code) return;
+        var text = code.innerText;
+        var done = function () {
+          btn.classList.add('copied');
+          btn.innerHTML = ICON_COPIED;
+          setTimeout(function () {
+            btn.classList.remove('copied');
+            btn.innerHTML = ICON_COPY;
+          }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        } else {
+          fallback();
+        }
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+      head.appendChild(label);
+      head.appendChild(btn);
+      block.insertBefore(head, block.firstChild);
+    });
+    };
+    window.__initCodeBlocks();
+
+    // Scroll reveals
+    var targets = document.querySelectorAll('.reveal');
+    if (targets.length) {
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        targets.forEach(function (el) { io.observe(el); });
+      } else {
+        targets.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+    }
+
+    // Smooth-scroll + scroll-spy for same-page anchor nav links
+    var anchorLinks = document.querySelectorAll('a[href*="#"]');
+    anchorLinks.forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        var href = a.getAttribute('href') || '';
+        var hashIdx = href.indexOf('#');
+        if (hashIdx < 0) return;
+        var id = href.slice(hashIdx + 1);
+        if (!id) return;
+        var path = href.slice(0, hashIdx);
+        var onThisPage = (path === '' || path === '/' || path === location.pathname);
+        if (!onThisPage) return;
+        var target = document.getElementById(id);
+        if (!target) return;
+        ev.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + id);
+      });
+    });
+
+    // Scroll-spy: highlight nav item whose target is in view
+    var spySections = document.querySelectorAll('[id="projects"], [id="about"]');
+    if (spySections.length && 'IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var id = e.target.id;
+          document.querySelectorAll('.topnav-links a').forEach(function (a) {
+            var href = a.getAttribute('href') || '';
+            a.classList.toggle('active', href.indexOf('#' + id) !== -1);
+          });
+        });
+      }, { threshold: 0.35 });
+      spySections.forEach(function (s) { spy.observe(s); });
+    }
+
+    // Skill tabs (About page)
+    document.querySelectorAll('[data-skill-tabs]').forEach(function (container) {
+      var triggers = container.querySelectorAll('.tab-trigger');
+      var panels   = container.querySelectorAll('.tab-panel');
+      triggers.forEach(function (t) {
+        t.addEventListener('click', function () {
+          var id = t.getAttribute('data-tab');
+          triggers.forEach(function (x) {
+            var on = x === t;
+            x.classList.toggle('active', on);
+            x.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          panels.forEach(function (p) {
+            p.classList.toggle('active', p.getAttribute('data-panel') === id);
+          });
+        });
+      });
+    });
+  })();
+</script>

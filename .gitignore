@@ -1,4 +1,8 @@
 _site
+# Writeup markdown is synced at build time from the private source repo and
+# contains password: frontmatter for locked writeups. Never commit.
+_writeups/*.md
+!_writeups/_*.md
 .bundle
 .sass-cache
 .jekyll-cache
@@ -12,3 +16,7 @@ node_modules/
 vendor
 .idea
 .venv
+
+# graphify
+graphify-out/
+.graphify_cache/

@@ -1,0 +1,46 @@
+- id: offensive
+  label: Offensive
+  summary: I find vulnerabilities in web, APIs, cloud, and Active Directory — and I write the exploit chain so developers see exactly how it happens.
+  groups:
+    - title: Web & API
+      tools: [Burp Suite Pro, Caido, OWASP ZAP, SQLMap, Nuclei, Nikto, Wfuzz, Postman]
+    - title: Recon & Network
+      tools: [Nmap, Rustscan, Masscan, ffuf, Gobuster, Amass, Subfinder]
+    - title: AD & Windows
+      tools: [BloodHound, Rubeus, Mimikatz, PowerView, Impacket, CrackMapExec, Evil-WinRM]
+    - title: Exploitation
+      tools: [Metasploit, Chisel, Ligolo-ng, LinPEAS, WinPEAS, Seatbelt]
+    - title: Passwords
+      tools: [Hashcat, John the Ripper, Hydra, CeWL]
+
+- id: defensive
+  label: Defensive
+  summary: I sit at the last review gate before production — catching SQLi, XSS, IDOR and auth bugs before they ship, and writing remediation that actually lands.
+  groups:
+    - title: SAST / Code Review
+      tools: [Semgrep, CodeQL, Bandit, Brakeman, SpotBugs, Checkmarx, ESLint Security]
+    - title: Secret Detection
+      tools: [Gitleaks, TruffleHog, git-secrets]
+    - title: DevSecOps Pipelines
+      tools: [Snyk, SonarQube, Trivy, Checkov, tfsec, KICS, Dependency-Check]
+    - title: Cloud Hardening
+      tools: [ScoutSuite, Prowler, Pacu, AWS CLI, CloudSploit]
+    - title: Container / K8s
+      tools: [Falco, kube-bench, Docker Bench, Anchore]
+
+- id: fullstack
+  label: Full-Stack
+  summary: 5+ years shipping production systems. I know where developers cut corners because I cut them too — it's why my remediation advice actually ships.
+  groups:
+    - title: Languages
+      tools: [Python, TypeScript, Node.js, Go, Bash, PowerShell]
+    - title: Frontend
+      tools: [React, Vue.js, Next.js, HTML/CSS]
+    - title: Backend & APIs
+      tools: [REST, GraphQL, OAuth2/OIDC, HashiCorp Vault]
+    - title: Data
+      tools: [PostgreSQL, MongoDB, Redis]
+    - title: Infra & CI/CD
+      tools: [Docker, Kubernetes, Terraform, Ansible, GitHub Actions, Jenkins, Buildkite]
+    - title: Observability
+      tools: [Prometheus, Grafana, Splunk]

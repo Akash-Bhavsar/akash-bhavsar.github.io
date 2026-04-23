@@ -4,6 +4,7 @@ title: Wazuh SOAR Automation
 description: A Docker-based SIEM and SOAR platform integrating Wazuh Manager, OpenSearch, and a web dashboard for centralized security monitoring. Provides automated threat detection, host monitoring via Wazuh agents, and a turnkey deployment with pre-configured containers and encrypted communications.
 importance: 2
 category: security
+stack: [Docker, Wazuh, OpenSearch, SOAR]
 github: https://github.com/Akash-Bhavsar/wazuh-soar-automation
 github_stars: Akash-Bhavsar/wazuh-soar-automation
 ---

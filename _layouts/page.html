@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<div class="page-wrap">
+  {% include nav.html %}
+
+  <section class="page-body">
+    {% if page.title %}
+    <div class="section-header">
+      <span class="section-num">//</span>
+      <h2>{{ page.title }}</h2>
+      <span class="section-line"></span>
+    </div>
+    {% endif %}
+
+    <div class="prose">
+      {{ content }}
+    </div>
+  </section>
+
+  {% include footer.html %}
+</div>

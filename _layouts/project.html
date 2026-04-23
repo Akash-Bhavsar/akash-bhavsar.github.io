@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<div class="page-wrap">
+  {% include nav.html %}
+
+  <section class="page-body">
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <span class="pc-sub" style="margin: 0;">// project</span>
+        {% if page.category %}<span class="hero-sep"></span><span class="hero-meta-text">{{ page.category }}</span>{% endif %}
+      </div>
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="hero-desc">{{ page.description }}</p>{% endif %}
+      {% if page.github %}
+        <div style="margin-top: 20px;">
+          <a href="{{ page.github }}" class="btn btn-outline" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="prose">
+      {{ content }}
+    </div>
+  </section>
+
+  {% include footer.html %}
+</div>

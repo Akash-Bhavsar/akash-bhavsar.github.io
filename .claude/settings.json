@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/akash/exe/hack-the-box-writeups/**)",
+      "Bash(gh api *)",
+      "Bash(base64 -d wc -l /tmp/tomato-style.css echo \"---\" head -50 /tmp/tomato-style.css)",
+      "Bash(base64 -d gh api repos/tomatobuster/WriteUps/contents/writeups/devarea.html --jq '.content')",
+      "Bash(base64 -d wc -l /tmp/tomato-writeups.html /tmp/tomato-devarea.html echo \"--- writeups.html \\(index\\) first 60 ---\" head -60 /tmp/tomato-writeups.html echo \"--- devarea.html \\(single writeup\\) first 40 ---\" head -40 /tmp/tomato-devarea.html)",
+      "Bash(bundle exec *)"
+    ],
+    "additionalDirectories": [
+      "/home/akash/exe/hack-the-box-writeups/Season - 10"
+    ]
+  }
+}

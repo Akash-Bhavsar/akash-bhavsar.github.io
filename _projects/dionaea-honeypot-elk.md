@@ -4,6 +4,7 @@ title: Dionaea Honeypot with ELK Stack
 description: A honeypot solution combining the Dionaea framework with the ELK stack (Elasticsearch, Logstash, Kibana) for real-time attack capture and analysis. Monitors HTTP, SMB, MySQL, FTP, Telnet, and more — generating threat intelligence visualized through interactive Kibana dashboards.
 importance: 3
 category: security
+stack: [Dionaea, Elasticsearch, Logstash, Kibana]
 github: https://github.com/Akash-Bhavsar/dionaea-stack
 github_stars: Akash-Bhavsar/dionaea-stack
 ---

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#0a0e13"/>
+  <rect x="2" y="2" width="60" height="60" rx="8" fill="none" stroke="#9FEF00" stroke-width="2"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="JetBrains Mono, Menlo, Consolas, monospace"
+        font-size="28" font-weight="700" fill="#9FEF00" letter-spacing="-1">AB</text>
+</svg>

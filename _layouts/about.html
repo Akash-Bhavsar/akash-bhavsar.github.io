@@ -1,0 +1,180 @@
+---
+layout: default
+---
+<div class="page-wrap">
+  {% include nav.html %}
+
+  <section class="about-page">
+
+    <!-- Hero -->
+    <div class="about-hero reveal">
+      <div class="about-hero-left">
+        <div class="avatar about-avatar" title="{{ site.author.name }}"></div>
+      </div>
+      <div class="about-hero-right">
+        <div class="about-eyebrow">// application-security-engineer</div>
+        <h1 class="about-headline">
+          Full-Stack turned <span class="accent">AppSec</span>.
+        </h1>
+        <p class="about-subhead">
+          OSCP+ certified engineer at Sydney Tools. I break things, then help teams build them back stronger.
+        </p>
+        <div class="about-stats">
+          <div class="about-stat"><div class="s-num">8<span>+</span></div><div class="s-label">Years in tech</div></div>
+          <div class="about-stat"><div class="s-num">OSCP<span>+</span></div><div class="s-label">Dec 2025</div></div>
+          <div class="about-stat"><div class="s-num">{{ site.writeups | size }}</div><div class="s-label">HTB writeups</div></div>
+          <div class="about-stat"><div class="s-num">50<span>+</span></div><div class="s-label">Assessments</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Narrative -->
+    <div class="about-narrative reveal">
+      <div class="prose">
+        {{ content }}
+      </div>
+      <div class="about-currently">
+        <span class="curr-dot"></span>
+        <span class="curr-label">Currently</span>
+        <span class="curr-text">leading AppSec at Sydney Tools · open to collaborations on CVE research, DevSecOps tooling, and security training.</span>
+      </div>
+    </div>
+
+    <!-- Skill tabs -->
+    <div class="section-title reveal">What I Do</div>
+    <div class="skill-tabs reveal" data-skill-tabs>
+      <div class="tab-triggers" role="tablist">
+        {% for kit in site.data.toolkit %}
+          <button type="button"
+                  class="tab-trigger{% if forloop.first %} active{% endif %}"
+                  data-tab="{{ kit.id }}"
+                  role="tab"
+                  aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+            <span class="tt-slash">//</span>
+            <span class="tt-label">{{ kit.label }}</span>
+          </button>
+        {% endfor %}
+      </div>
+
+      <div class="tab-panels">
+        {% for kit in site.data.toolkit %}
+          <div class="tab-panel{% if forloop.first %} active{% endif %}"
+               data-panel="{{ kit.id }}"
+               role="tabpanel">
+            <p class="tab-summary">{{ kit.summary }}</p>
+            <div class="tool-groups">
+              {% for group in kit.groups %}
+                <div class="tool-group">
+                  <div class="tool-group-title">{{ group.title }}</div>
+                  <div class="tool-chips">
+                    {% for tool in group.tools %}
+                      <span class="tool-chip">{{ tool }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Journey timeline -->
+    <div class="section-title reveal">The Journey</div>
+    <div class="timeline reveal">
+      {% for step in site.data.journey %}
+        <div class="tl-item">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-year">{{ step.year }}</div>
+            <div class="tl-title">{{ step.title }}</div>
+            <div class="tl-desc">{{ step.desc }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Credential showcase -->
+    <div class="section-title reveal">Verified Credential</div>
+    <div class="cred-showcase reveal">
+      <div class="cred-meta">
+        <div class="cred-badge">OSCP+</div>
+        <div class="cred-title">Offensive Security Certified Professional (Plus)</div>
+        <div class="cred-issuer">Offensive Security · Issued Dec 2025</div>
+        <a href="https://credentials.offsec.com/9ceba917-605a-40df-80cd-a29f00d3bb74"
+           class="cred-verify" target="_blank" rel="noopener">
+          Verify on OffSec <span class="arr">→</span>
+        </a>
+      </div>
+      <div class="cred-embed">
+        <iframe src="https://credentials.offsec.com/embed/9ceba917-605a-40df-80cd-a29f00d3bb74"
+                title="OSCP+ Credential — Akash Bhavsar"
+                frameborder="0"
+                allowfullscreen
+                loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- Philosophy -->
+    <div class="approach-card reveal">
+      <div class="approach-tag">// philosophy</div>
+      <blockquote class="approach-quote">
+        Security isn't about saying no. It's about finding ways to say <span class="accent">yes</span>, securely.
+      </blockquote>
+      <p class="approach-body">
+        I don't just find vulnerabilities — I understand the developer mindset and provide remediation that's realistic to ship. Having built production systems myself, I know what breaks, what gets deferred, and what actually makes it into the next sprint.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="section-title reveal">Let's Talk</div>
+    <div class="about-cta reveal">
+      {% if site.data.socials.email %}
+        <a href="mailto:{{ site.data.socials.email }}" class="cta-box cta-email">
+          <div class="cb-icon">@</div>
+          <div class="cb-body">
+            <div class="cb-label">Email</div>
+            <div class="cb-value">{{ site.data.socials.email }}</div>
+          </div>
+          <div class="cb-arr">→</div>
+        </a>
+      {% endif %}
+      {% if site.data.socials.linkedin %}
+        <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin }}" target="_blank" rel="noopener" class="cta-box cta-linkedin">
+          <div class="cb-icon">in</div>
+          <div class="cb-body">
+            <div class="cb-label">LinkedIn</div>
+            <div class="cb-value">/in/{{ site.data.socials.linkedin }}</div>
+          </div>
+          <div class="cb-arr">→</div>
+        </a>
+      {% endif %}
+      {% if site.data.socials.github %}
+        <a href="https://github.com/{{ site.data.socials.github }}" target="_blank" rel="noopener" class="cta-box cta-github">
+          <div class="cb-icon">&lt;/&gt;</div>
+          <div class="cb-body">
+            <div class="cb-label">GitHub</div>
+            <div class="cb-value">/{{ site.data.socials.github }}</div>
+          </div>
+          <div class="cb-arr">→</div>
+        </a>
+      {% endif %}
+      {% if site.data.socials.htb %}
+        <a href="https://app.hackthebox.com/users/{{ site.data.socials.htb }}" target="_blank" rel="noopener" class="cta-box cta-htb">
+          <div class="cb-icon">⬡</div>
+          <div class="cb-body">
+            <div class="cb-label">Hack The Box</div>
+            <div class="cb-value">/users/{{ site.data.socials.htb }}</div>
+          </div>
+          <div class="cb-arr">→</div>
+        </a>
+      {% endif %}
+    </div>
+
+  </section>
+
+  {% include footer.html %}
+</div>

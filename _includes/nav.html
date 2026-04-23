@@ -1,0 +1,17 @@
+<nav class="topnav">
+  <a href="{{ '/' | relative_url }}" class="topnav-logo">AB</a>
+  <div class="topnav-right">
+    <ul class="topnav-links" id="topnav-links">
+      <li><a href="{{ '/#projects' | relative_url }}">Projects</a></li>
+      <li><a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} class="active"{% endif %}>About</a></li>
+      <li><a href="{{ '/writeups/' | relative_url }}"{% if page.url contains '/writeups' %} class="active"{% endif %}>Writeups</a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="toggle-moon">🌙</span>
+      <span class="toggle-sun">☀️</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>

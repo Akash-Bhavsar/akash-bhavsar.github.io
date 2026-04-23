@@ -1,0 +1,151 @@
+---
+layout: default
+---
+<div class="page-wrap">
+  {% include nav.html %}
+
+  <div class="page-title-block">
+    <div class="page-eyebrow">// All writeups</div>
+    <h1 class="page-title">Writeups</h1>
+    <p class="page-subtitle">{{ page.subtitle | default: "Hack The Box machine walkthroughs — recon, exploitation, privilege escalation." }}</p>
+  </div>
+
+  <div class="search-row">
+    <input class="search-input" id="search-input" type="text" placeholder="Search writeups..." aria-label="Search writeups" />
+    <select class="sort-select" id="sort-select" aria-label="Sort writeups">
+      <option value="date-desc">Latest first</option>
+      <option value="date-asc">Oldest first</option>
+      <option value="title">Title A→Z</option>
+    </select>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Category</span>
+    <div class="filter-chips">
+      <button class="chip" data-cat="PWN">PWN</button>
+      <button class="chip" data-cat="WEB">WEB</button>
+      <button class="chip" data-cat="CRYPTO">CRYPTO</button>
+      <button class="chip" data-cat="REV">REV</button>
+      <button class="chip" data-cat="FORENSICS">FORENSICS</button>
+      <button class="chip" data-cat="MISC">MISC</button>
+    </div>
+    <div class="filter-sep"></div>
+    <span class="filter-label">Difficulty</span>
+    <div class="filter-chips">
+      <button class="chip" data-diff="EASY">EASY</button>
+      <button class="chip" data-diff="MEDIUM">MEDIUM</button>
+      <button class="chip" data-diff="HARD">HARD</button>
+      <button class="chip" data-diff="INSANE">INSANE</button>
+    </div>
+    <span class="filter-count" id="filter-count">{{ site.writeups | size }} writeup{% if site.writeups.size != 1 %}s{% endif %}</span>
+  </div>
+
+  {% assign writeups = site.writeups | sort: 'date' | reverse %}
+  {% assign seasons = writeups | map: 'season' | uniq %}
+
+  <div class="writeups-grid" id="writeups-grid">
+    {% for season in seasons %}
+      {% if season %}
+      <div class="ctf-group" data-group>
+        <div class="ctf-group-label">{{ season }}</div>
+      </div>
+      {% endif %}
+      {% assign group = writeups | where: 'season', season %}
+      {% for w in group %}
+        {% assign wcat = w.category | default: 'MISC' %}
+        {% assign wdiff = w.difficulty | default: 'EASY' %}
+        <a href="{{ w.url | relative_url }}" class="card"
+           data-cat="{{ wcat | upcase }}"
+           data-diff="{{ wdiff | upcase }}"
+           data-date="{{ w.date | date: '%Y%m%d' }}"
+           data-title="{{ w.title }}">
+          <div class="card-top">
+            <div class="card-badges">
+              <span class="badge badge-{{ wcat | downcase }}">{{ wcat | upcase }}</span>
+              <span class="badge badge-{{ wdiff | downcase }}">{{ wdiff | upcase }}</span>
+            </div>
+          </div>
+          <div class="card-title">{{ w.title }}</div>
+          <div class="card-desc">{{ w.description | default: w.excerpt | strip_html | strip_newlines | truncate: 140 }}</div>
+          <div class="card-meta">
+            {% if w.season %}<span>{{ w.season }}</span>{% endif %}
+            <span>{{ w.date | date: "%b %-d, %Y" }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <div class="no-results">No writeups match the current filters.</div>
+
+  {% include footer.html %}
+</div>
+
+<script>
+  (function () {
+    var grid    = document.getElementById('writeups-grid');
+    var cards   = grid ? Array.prototype.slice.call(grid.querySelectorAll('.card')) : [];
+    var chips   = Array.prototype.slice.call(document.querySelectorAll('.filter-chips .chip'));
+    var search  = document.getElementById('search-input');
+    var sortSel = document.getElementById('sort-select');
+    var count   = document.getElementById('filter-count');
+    var empty   = document.querySelector('.no-results');
+
+    var state = { cat: null, diff: null, q: '' };
+
+    function apply () {
+      var visible = 0;
+      cards.forEach(function (c) {
+        var okCat  = !state.cat  || c.dataset.cat  === state.cat;
+        var okDiff = !state.diff || c.dataset.diff === state.diff;
+        var hay = (c.dataset.title + ' ' + (c.querySelector('.card-desc') || {}).textContent).toLowerCase();
+        var okQ = !state.q || hay.indexOf(state.q) !== -1;
+        var show = okCat && okDiff && okQ;
+        c.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      // Hide season labels with no visible cards under them
+      Array.prototype.slice.call(document.querySelectorAll('[data-group]')).forEach(function (g) {
+        var next = g.nextElementSibling;
+        var any = false;
+        while (next && !next.hasAttribute('data-group')) {
+          if (next.classList.contains('card') && next.style.display !== 'none') { any = true; break; }
+          next = next.nextElementSibling;
+        }
+        g.style.display = any ? '' : 'none';
+      });
+      if (count) count.textContent = visible + ' writeup' + (visible === 1 ? '' : 's');
+      if (empty) empty.classList.toggle('visible', visible === 0);
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var key = chip.dataset.cat ? 'cat' : 'diff';
+        var val = chip.dataset.cat || chip.dataset.diff;
+        var same = state[key] === val;
+        // clear siblings in same group
+        chip.parentElement.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+        state[key] = same ? null : val;
+        if (!same) chip.classList.add('active');
+        apply();
+      });
+    });
+
+    if (search) search.addEventListener('input', function () {
+      state.q = search.value.trim().toLowerCase();
+      apply();
+    });
+
+    if (sortSel) sortSel.addEventListener('change', function () {
+      var mode = sortSel.value;
+      var sorted = cards.slice().sort(function (a, b) {
+        if (mode === 'title')     return a.dataset.title.localeCompare(b.dataset.title);
+        if (mode === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
+        return b.dataset.date.localeCompare(a.dataset.date);
+      });
+      sorted.forEach(function (c) { grid.appendChild(c); });
+    });
+
+    apply();
+  })();
+</script>

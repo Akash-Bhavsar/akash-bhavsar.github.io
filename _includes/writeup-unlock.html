@@ -1,0 +1,182 @@
+<script>
+  (function () {
+    var lock = document.querySelector('.writeup-lock');
+    if (!lock || !window.crypto || !window.crypto.subtle) return;
+
+    var form  = lock.querySelector('.lock-form');
+    var input = lock.querySelector('.lock-input');
+    var btn   = lock.querySelector('.lock-submit');
+    var err   = lock.querySelector('.lock-error');
+    if (!form || !input) return;
+
+    var PWD_KEY      = 'writeup-pwd:' + location.pathname;
+    var BACKOFF_KEY  = 'writeup-backoff:' + location.pathname;
+    var BACKOFF_CAP  = 60; // seconds
+    var UNLOCK_LABEL = (btn && btn.textContent) || 'Unlock';
+    var countdownTimer = null;
+
+    function b64ToBytes(b64) {
+      var bin = atob(b64);
+      var out = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    }
+
+    function loadBackoff() {
+      try {
+        var raw = sessionStorage.getItem(BACKOFF_KEY);
+        if (!raw) return { attempts: 0, until: 0 };
+        var parsed = JSON.parse(raw);
+        return { attempts: parsed.attempts | 0, until: parsed.until | 0 };
+      } catch (e) { return { attempts: 0, until: 0 }; }
+    }
+
+    function saveBackoff(state) {
+      try { sessionStorage.setItem(BACKOFF_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function clearBackoff() {
+      try { sessionStorage.removeItem(BACKOFF_KEY); } catch (e) {}
+    }
+
+    function nextDelay(attempts) {
+      var n = Math.pow(2, Math.max(0, attempts - 1));
+      return Math.min(n, BACKOFF_CAP);
+    }
+
+    function showError(msg) {
+      if (!err) return;
+      err.textContent = msg;
+      err.removeAttribute('hidden');
+      err.style.display = 'flex';
+    }
+
+    function clearError() {
+      if (!err) return;
+      err.setAttribute('hidden', '');
+      err.style.display = '';
+      err.textContent = '';
+    }
+
+    function setLocked(seconds) {
+      if (!btn) return;
+      input.disabled = true;
+      btn.disabled = true;
+      var tick = function () {
+        var left = Math.ceil((loadBackoff().until - Date.now()) / 1000);
+        if (left <= 0) {
+          clearInterval(countdownTimer);
+          countdownTimer = null;
+          input.disabled = false;
+          btn.disabled = false;
+          btn.textContent = UNLOCK_LABEL;
+          // Intentionally keep the error message so the user still sees
+          // why they're here; it clears when they type a new password.
+          return;
+        }
+        btn.textContent = 'Retry in ' + left + 's';
+      };
+      tick();
+      if (countdownTimer) clearInterval(countdownTimer);
+      countdownTimer = setInterval(tick, 250);
+    }
+
+    function decrypt(password) {
+      var salt = b64ToBytes(lock.dataset.salt);
+      var iv   = b64ToBytes(lock.dataset.iv);
+      var ct   = b64ToBytes(lock.dataset.ciphertext);
+      var iter = parseInt(lock.dataset.iter, 10) || 200000;
+      var enc  = new TextEncoder();
+
+      return window.crypto.subtle.importKey(
+        'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']
+      ).then(function (baseKey) {
+        return window.crypto.subtle.deriveKey(
+          { name: 'PBKDF2', salt: salt, iterations: iter, hash: 'SHA-256' },
+          baseKey,
+          { name: 'AES-GCM', length: 256 },
+          false,
+          ['decrypt']
+        );
+      }).then(function (key) {
+        return window.crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ct);
+      }).then(function (buf) {
+        return new TextDecoder().decode(buf);
+      });
+    }
+
+    function reveal(html) {
+      var wrap = lock.parentNode;
+      if (!wrap) return;
+      wrap.innerHTML = html;
+      if (typeof window.__initCodeBlocks === 'function') {
+        window.__initCodeBlocks();
+      }
+      // Move focus to the first heading of the revealed content so screen
+      // reader users know the unlock succeeded and can orient themselves.
+      // Without this, focus drops to <body> when the lock button is destroyed.
+      var firstHeading = wrap.querySelector('h1, h2, h3, h4, h5, h6');
+      if (firstHeading) {
+        if (!firstHeading.hasAttribute('tabindex')) {
+          firstHeading.setAttribute('tabindex', '-1');
+        }
+        try { firstHeading.focus({ preventScroll: true }); } catch (e) { firstHeading.focus(); }
+      }
+      if (location.hash) {
+        var target = document.getElementById(location.hash.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function tryUnlock(password, silent) {
+      if (btn) { btn.disabled = true; btn.textContent = 'Unlocking...'; }
+      input.disabled = true;
+      return decrypt(password).then(function (html) {
+        clearBackoff();
+        try { sessionStorage.setItem(PWD_KEY, password); } catch (e) {}
+        reveal(html);
+      }).catch(function () {
+        try { sessionStorage.removeItem(PWD_KEY); } catch (e) {}
+        if (silent) {
+          input.disabled = false;
+          if (btn) { btn.disabled = false; btn.textContent = UNLOCK_LABEL; }
+          return;
+        }
+        var state = loadBackoff();
+        state.attempts += 1;
+        var delay = nextDelay(state.attempts);
+        state.until = Date.now() + delay * 1000;
+        saveBackoff(state);
+        showError('Incorrect password.');
+        setLocked(delay);
+      });
+    }
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var state = loadBackoff();
+      if (state.until > Date.now()) return; // still locked
+      clearError();
+      var pwd = input.value;
+      if (!pwd) return;
+      tryUnlock(pwd, false);
+    });
+
+    input.addEventListener('input', function () {
+      if (err && !err.hidden) clearError();
+    });
+
+    // On load: restore backoff if still active, or auto-unlock from stored password
+    var initial = loadBackoff();
+    if (initial.until > Date.now()) {
+      var waitLeft = Math.ceil((initial.until - Date.now()) / 1000);
+      showError('Too many attempts. Retry in ' + waitLeft + 's.');
+      setLocked(waitLeft);
+    } else {
+      try {
+        var stored = sessionStorage.getItem(PWD_KEY);
+        if (stored) tryUnlock(stored, true);
+      } catch (e) {}
+    }
+  })();
+</script>

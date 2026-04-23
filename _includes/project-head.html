@@ -1,0 +1,32 @@
+{% comment %}
+  Project pages — CreativeWork + BreadcrumbList JSON-LD.
+{% endcomment %}
+{% assign p_url = page.url | absolute_url %}
+{% assign p_desc = page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 220 %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": {{ page.title | jsonify }},
+  "description": {{ p_desc | jsonify }},
+  "author":    { "@type": "Person", "name": {{ site.author.name | jsonify }}, "url": {{ site.url | append: '/' | jsonify }} },
+  "url": {{ p_url | jsonify }},
+  "mainEntityOfPage": {{ p_url | jsonify }},
+  {% if page.github %}"codeRepository": {{ page.github | jsonify }},{% endif %}
+  {% if page.stack %}"keywords": {{ page.stack | jsonify }},{% endif %}
+  "inLanguage": "en"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ site.url | append: '/' | jsonify }} },
+    { "@type": "ListItem", "position": 2, "name": "Projects", "item": "{{ '/#projects' | absolute_url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ p_url | jsonify }} }
+  ]
+}
+</script>

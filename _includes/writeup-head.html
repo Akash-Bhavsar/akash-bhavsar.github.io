@@ -1,0 +1,41 @@
+{% comment %}
+  Writeup-specific JSON-LD TechArticle + article-only meta.
+  jekyll-seo-tag already emits og:title/description/url/image and twitter card.
+{% endcomment %}
+{% assign w_url = page.url | absolute_url %}
+{% assign w_desc = page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 220 %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ w_desc | jsonify }},
+  "author":    { "@type": "Person", "name": {{ site.author.name | jsonify }}, "url": {{ site.url | append: '/' | jsonify }} },
+  "publisher": { "@type": "Person", "name": {{ site.author.name | jsonify }}, "url": {{ site.url | append: '/' | jsonify }} },
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "dateModified":  "{{ page.last_modified_at | default: page.date | date: '%Y-%m-%d' }}",
+  "url": {{ w_url | jsonify }},
+  "mainEntityOfPage": {{ w_url | jsonify }},
+  {% if page.tags %}"keywords": {{ page.tags | jsonify }},{% endif %}
+  "articleSection": "HTB Writeups",
+  {% if page.difficulty %}"difficulty": {{ page.difficulty | capitalize | jsonify }},{% endif %}
+  "inLanguage": "en"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ site.url | append: '/' | jsonify }} },
+    { "@type": "ListItem", "position": 2, "name": "Writeups", "item": "{{ '/writeups/' | absolute_url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ w_url | jsonify }} }
+  ]
+}
+</script>
+
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+<meta property="article:author"         content="{{ site.author.name }}">
+{% if page.tags %}<meta property="article:tag" content="{{ page.tags | join: ', ' }}">{% endif %}

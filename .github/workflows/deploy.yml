@@ -1,9 +1,16 @@
-name: Deploy site
+name: Build and deploy site
+
+# Two trigger paths:
+#   1. Direct push to this repo (master)           → normal deploy
+#   2. repository_dispatch from the writeups repo  → pull fresh writeups, deploy
+# Either way, the build always pulls the latest writeups content.
 
 on:
   push:
     branches: ["master"]
   workflow_dispatch:
+  repository_dispatch:
+    types: [writeups-updated]
 
 permissions:
   contents: read
@@ -14,18 +21,34 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  WRITEUPS_REPO: Akash-Bhavsar/hack-the-box-writeups
+  WRITEUPS_CHECKOUT: ./_writeups_source
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout site
         uses: actions/checkout@v4
+
+      - name: Checkout writeups repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.WRITEUPS_REPO }}
+          path: ${{ env.WRITEUPS_CHECKOUT }}
+          fetch-depth: 0  # sync script reads git log for first-commit dates
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2"
           bundler-cache: true
+
+      - name: Sync writeups
+        run: ruby scripts/sync_writeups.rb
+        env:
+          WRITEUPS_SOURCE_DIR: ${{ env.WRITEUPS_CHECKOUT }}
 
       - name: Setup Pages
         id: pages

@@ -4,6 +4,7 @@ title: AWS WAF Security Operations Suite
 description: A production-grade AWS WAF deployment protecting web applications against OWASP Top 10 threats. Deploys 10 custom WAF rules (SQLi, XSS, rate limiting, bot detection, geo-blocking, CSRF) in front of CloudFront, with CloudWatch dashboards, CloudTrail audit logging, and an automated threat detection engine that auto-blocks malicious IPs. Includes 30+ attack vector tests and full IaC via Python and boto3.
 importance: 4
 category: security
+stack: [AWS WAF, CloudFront, Python, boto3]
 github: https://github.com/Akash-Bhavsar/WAF-Ops-Suite
 github_stars: Akash-Bhavsar/WAF-Ops-Suite
 ---

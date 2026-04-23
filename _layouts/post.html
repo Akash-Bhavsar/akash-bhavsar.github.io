@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<div class="page-wrap">
+  {% include nav.html %}
+
+  <section class="page-body">
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <span class="pc-sub" style="margin: 0;">// blog</span>
+        <span class="hero-sep"></span>
+        <time class="hero-meta-text" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+      </div>
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="hero-desc">{{ page.description }}</p>{% endif %}
+    </div>
+
+    <div class="prose">
+      {{ content }}
+    </div>
+  </section>
+
+  {% include footer.html %}
+</div>
