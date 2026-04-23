@@ -36,6 +36,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.WRITEUPS_REPO }}
+          token: ${{ secrets.WRITEUPS_PAT }}
           path: ${{ env.WRITEUPS_CHECKOUT }}
           fetch-depth: 0  # sync script reads git log for first-commit dates
 
