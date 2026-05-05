@@ -1,0 +1,16 @@
+{%- comment -%}
+  Production-only analytics. Skipped during local `jekyll serve` so dev hits
+  don't pollute the dashboards. Both providers are cookie-free and need no
+  consent banner. Either snippet can be disabled by removing its config key.
+{%- endcomment -%}
+{%- if jekyll.environment == "production" -%}
+{%- if site.analytics.cloudflare_token -%}
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.analytics.cloudflare_token }}"}'></script>
+{%- endif -%}
+{%- if site.analytics.goatcounter_code -%}
+<!-- GoatCounter -->
+<script data-goatcounter="https://{{ site.analytics.goatcounter_code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<noscript><img src="https://{{ site.analytics.goatcounter_code }}.goatcounter.com/count?p={{ page.url }}" alt=""></noscript>
+{%- endif -%}
+{%- endif -%}

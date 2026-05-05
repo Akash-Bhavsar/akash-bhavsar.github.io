@@ -21,6 +21,13 @@ social:
 
 permalink: /blog/:year/:title/
 
+# Analytics — only emitted when JEKYLL_ENV=production. Both run in parallel:
+# Cloudflare gives unlimited free history (24h delay, no realtime).
+# GoatCounter gives realtime hits + clean referrer breakdown.
+analytics:
+  cloudflare_token: "2ab3e20a494b4f9e9053dc8ab7c099b8"
+  goatcounter_code: "akash-bhavsar"
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
